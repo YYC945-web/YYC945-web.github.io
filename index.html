@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#8b7cf6" />
+  <title>心晴日记 · 情绪与自我关怀</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- 顶部标题 -->
+    <header class="topbar">
+      <div class="logo">🌿 心晴日记</div>
+      <div class="topbar-sub" id="topbarSub">今天也要好好照顾自己</div>
+    </header>
+
+    <!-- ============ 视图1：今日打卡 ============ -->
+    <section class="view active" id="view-checkin">
+      <div class="card hero-card">
+        <div class="date-line" id="dateLine"></div>
+        <h2 id="greeting">你好呀 👋</h2>
+        <p class="muted">此刻的你，感觉怎么样？</p>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">① 选择情绪</h3>
+        <div class="mood-grid" id="moodGrid"></div>
+        <div class="intensity-row">
+          <span class="intensity-label">强度</span>
+          <input type="range" id="intensity" min="1" max="5" value="3" />
+          <span class="intensity-value" id="intensityValue">中等</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">② 可能的触发因素 <span class="muted small">可多选</span></h3>
+        <div class="tag-list" id="tagList"></div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">③ 写几句心情</h3>
+        <textarea id="note" placeholder="今天发生了什么？哪怕一句话也好…"></textarea>
+      </div>
+
+      <button class="btn-primary" id="saveBtn">保存今日心情 ✨</button>
+      <p class="toast" id="toast"></p>
+    </section>
+
+    <!-- ============ 视图2：情绪洞察 ============ -->
+    <section class="view" id="view-insight">
+      <div class="card stat-row">
+        <div class="stat"><div class="stat-num" id="streakNum">0</div><div class="stat-label">连续打卡(天)</div></div>
+        <div class="stat"><div class="stat-num" id="totalNum">0</div><div class="stat-label">累计记录</div></div>
+        <div class="stat"><div class="stat-num" id="avgMood">—</div><div class="stat-label">平均情绪</div></div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">近 14 天情绪趋势</h3>
+        <div class="chart-wrap" id="trendChart"></div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">情绪分布</h3>
+        <div class="dist-row" id="distRow"></div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">触发因素分析 <span class="muted small">负面情绪高频关联</span></h3>
+        <div id="triggerAnalysis" class="trigger-list"></div>
+      </div>
+
+      <div class="card ai-card">
+        <div class="ai-head">✨ AI 洞察</div>
+        <p id="aiInsight">记录几天的情绪后，这里会生成属于你的洞察。</p>
+      </div>
+    </section>
+
+    <!-- ============ 视图3：自我关怀 ============ -->
+    <section class="view" id="view-care">
+      <div class="card care-hero">
+        <h2 id="careGreeting">给自己一点温柔</h2>
+        <p class="muted" id="careHint">根据你最近的记录，为你准备了几份小礼物。</p>
+      </div>
+
+      <div class="card breathe-card" id="breatheCard">
+        <h3 class="card-title">🌬️ 呼吸冥想</h3>
+        <p class="muted">4-7-8 呼吸法，2 分钟帮你平静下来</p>
+        <button class="btn-primary" id="goBreathe">开始呼吸练习</button>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">🎵 音乐清单</h3>
+        <div class="music-list" id="musicList"></div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">🧘 运动 &amp; 拉伸建议</h3>
+        <div class="exercise-list" id="exerciseList"></div>
+      </div>
+    </section>
+
+    <!-- ============ 视图4：呼吸练习 ============ -->
+    <section class="view" id="view-breathe">
+      <div class="breathe-stage">
+        <div class="breathe-ring" id="breatheRing">
+          <div class="breathe-inner">
+            <div class="breathe-phase" id="breathePhase">准备</div>
+            <div class="breathe-count" id="breatheCount">4</div>
+          </div>
+        </div>
+        <p class="muted breathe-tip" id="breatheTip">找个舒服的姿势，点击开始</p>
+        <button class="btn-primary" id="breatheStart">开始</button>
+        <button class="btn-ghost" id="breatheBack">返回</button>
+      </div>
+    </section>
+
+    <!-- 底部导航 -->
+    <nav class="tabbar">
+      <div class="tab active" data-view="view-checkin"><span>📝</span>打卡</div>
+      <div class="tab" data-view="view-insight"><span>📊</span>洞察</div>
+      <div class="tab" data-view="view-care"><span>🌿</span>关怀</div>
+      <div class="tab" data-view="view-breathe"><span>🌬️</span>呼吸</div>
+    </nav>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
